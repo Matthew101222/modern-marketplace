@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Modern Marketplace</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f0f8ff, #0a3d62);
+      color: #333;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    body.dark {
+      background: #1f1f1f;
+      color: #eee;
+    }
+
+    header {
+      background: linear-gradient(to right, #a8d0e6, #0a3d62);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 700;
+      animation: slideIn 1s ease;
+    }
+
+    #button-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2rem;
+    }
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #ffffff99;
+      color: #333;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffffffcc;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .welcome-message {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      color: #0a3d62;
+    }
+
+    .marketplace, .golf-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .golf-items {
+      display: none;
+      margin-top: 4rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      width: 300px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body.dark .product-card {
+      background: #2c2c2c;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .product-card h3 {
+      margin-top: 1rem;
+      color: #0a3d62;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark .product-card p {
+      color: #ccc;
+    }
+
+    .product-card button {
+      background-color: #a8d0e6;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      font-size: 14px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .product-card button:hover {
+      background-color: #0a3d62;
+      transform: scale(1.05);
+    }
+
+    form {
+      max-width: 500px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    body.dark form {
+      background: #2c2c2c;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #0a3d62;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body.dark input, body.dark textarea {
+      background: #3a3a3a;
+      color: #eee;
+      border: 1px solid #555;
+    }
+
+    form button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .marketplace {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        alert("Hello, how are you?");
+      }, 300);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const btn = document.getElementById('darkModeToggle');
+      btn.textContent = document.body.classList.contains('dark') ? '☀ Light Mode' : '🌙 Dark Mode';
+    }
+
+    function toggleGolfItems() {
+      const section = document.querySelector('.golf-items');
+      section.style.display = section.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function addProduct(event) {
+      event.preventDefault();
+      const name = document.getElementById('productName').value;
+      const desc = document.getElementById('productDesc').value;
+      const price = document.getElementById('productPrice').value;
+      const img = document.getElementById('productImage').value;
+
+      const container = document.querySelector('.marketplace');
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = ` 
+        <img src="${img}" alt="${name}">
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <p><strong>Price: R${price}</strong></p>
+        <button onclick="alert('You have shown interest in ${name}!')">Contact Seller</button>
+      `;
+      container.appendChild(card);
+      event.target.reset();
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to My Website</h1>
+    <div id="button-container">
+      <button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+      <button id="golfToggle" onclick="toggleGolfItems()">⛳ Golf Items</button>
+      <button id="formLink" onclick="window.open('https://docs.google.com/forms/d/1os4Ok6ZNuqI3hAnSrsRxIXr_KgYsKxMFTwRzxmuQ4dM/edit')">Join Club</button>
+      <button id="spreadsheetLink" onclick="window.open('https://docs.google.com/spreadsheets/d/1sdPhgAFyce9YU_WmYXCgN9wk5IALGzt0dZmz8yzexTY/edit?gid=0#gid=0')">Tournament Details</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="welcome-message">
+      <p>This is a modern and warm site to get you started with coding and marketing!</p>
+    </div>
+
+    <section class="marketplace">
+      <div class="product-card">
+        <img src="https://wallpapercave.com/wp/wp3152199.jpg" alt="Yamaha MT-07">
+        <h3>Yamaha MT-07</h3>
+        <p>2020 Model - Low mileage, excellent condition. Perfect for city and highway rides.</p>
+        <p><strong>Price: R85,000</strong></p>
+        <button onclick="alert('You have shown interest in the Yamaha MT-07!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/OIP.MY64cMrkLErkLtBfYmZ2vAHaDw?rs=1&pid=ImgDetMain" alt="Lenovo ThinkPad X1">
+        <h3>Lenovo ThinkPad X1</h3>
+        <p>2022 Model - i7, 16GB RAM, 512GB SSD. Great for business and development.</p>
+        <p><strong>Price: R19,999</strong></p>
+        <button onclick="alert('You have shown interest in the Lenovo ThinkPad X1!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/R.17b9a42ec565709d9e6a414cc2eea7f6?rik=JgANKOXpoOdxgQ&pid=ImgRaw&r=0" alt="Canon EOS 90D">
+        <h3>Canon EOS 90D</h3>
+        <p>High-performance DSLR with 32.5MP, great for photography and video content creation.</p>
+        <p><strong>Price: R21,500</strong></p>
+        <button onclick="alert('You have shown interest in the Canon EOS 90D!')">Contact Seller</button>
+      </div>
+    </section>
+
+    <section class="golf-items">
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/OIP.6_UyshlqCVa6bFVoGt-39gAAAA?w=312&h=879&rs=1&pid=ImgDetMain" alt="Golf Club Set">
+        <h3>Golf Club Set</h3>
+        <p>Complete set with driver, woods, irons, and putter. Great for all skill levels.</p>
+        <p><strong>Price: R12,000</strong></p>
+        <button onclick="alert('You have shown interest in the Golf Club Set!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/OIP.Mt0jFJvqNCGTGZWW4OOw2gHaHa?rs=1&pid=ImgDetMain" alt="Golf Balls">
+        <h3>Golf Balls</h3>
+        <p>Premium 12-pack. High durability and long-distance flight.</p>
+        <p><strong>Price: R350</strong></p>
+        <button onclick="alert('You have shown interest in the Golf Balls!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/R.60d488565478ec42bc4dcc7d69946232?rik=qd%2fbR0Dur7slyg&pid=ImgRaw&r=0" alt="Golf Bag">
+        <h3>Golf Bag</h3>
+        <p>Spacious, lightweight, and durable. Multiple compartments and straps.</p>
+        <p><strong>Price: R1,500</strong></p>
+        <button onclick="alert('You have shown interest in the Golf Bag!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://th.bing.com/th/id/OIP.LBo-lM1fign4HhAgFsIe-QHaHa?rs=1&pid=ImgDetMain" alt="Golf Gloves">
+        <h3>Golf Gloves</h3>
+        <p>Comfortable grip and breathable material. Includes left and right hand.</p>
+        <p><strong>Price: R300</strong></p>
+        <button onclick="alert('You have shown interest in the Golf Gloves!')">Contact Seller</button>
+      </div>
+    </section>
+
+    <form onsubmit="addProduct(event)">
+      <h2>Add Your Item</h2>
+      <input type="text" id="productName" placeholder="Product Name" required />
+      <input type="text" id="productDesc" placeholder="Short Description" required />
+      <input type="number" id="productPrice" placeholder="Price (e.g. 2500)" required />
+      <input type="text" id="productImage" placeholder="Image URL" required />
+      <button type="submit">Add Product</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 My Modern Marketplace. All rights reserved.
+  </footer>
+</body>
+</html>
