@@ -74,14 +74,14 @@
       color: #0a3d62;
     }
 
-    .marketplace, .golf-items {
+    .marketplace, .golf-items, .luxury-cars {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
     }
 
-    .golf-items {
+    .golf-items, .luxury-cars {
       display: none;
       margin-top: 4rem;
     }
@@ -239,6 +239,11 @@
       section.style.display = section.style.display === 'flex' ? 'none' : 'flex';
     }
 
+    function toggleLuxuryCars() {
+      const section = document.querySelector('.luxury-cars');
+      section.style.display = section.style.display === 'flex' ? 'none' : 'flex';
+    }
+
     function addProduct(event) {
       event.preventDefault();
       const name = document.getElementById('productName').value;
@@ -268,6 +273,7 @@
     <div id="button-container">
       <button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
       <button id="golfToggle" onclick="toggleGolfItems()">⛳ Golf Items</button>
+      <button id="luxuryCarToggle" onclick="toggleLuxuryCars()">🚗 Luxury Cars</button>
       <button id="formLink" onclick="window.open('https://docs.google.com/forms/d/1os4Ok6ZNuqI3hAnSrsRxIXr_KgYsKxMFTwRzxmuQ4dM/edit')">Join Club</button>
       <button id="calendarLink" onclick="window.open('https://editablecalendar.com/')">🗓 Editable Calendar</button>
     </div>
@@ -335,6 +341,32 @@
         <p>Comfortable grip and breathable material. Includes left and right hand.</p>
         <p><strong>Price: R300</strong></p>
         <button onclick="alert('You have shown interest in the Golf Gloves!')">Contact Seller</button>
+      </div>
+    </section>
+
+    <section class="luxury-cars">
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/11/5e/c3/115ec3333c8fdffe7c012eea76730efd.jpg" alt="Rolls Royce">
+        <h3>Rolls Royce Phantom</h3>
+        <p>Luxurious and powerful. A true status symbol.</p>
+        <p><strong>Price: R12,000,000</strong></p>
+        <button onclick="alert('You have shown interest in the Rolls Royce Phantom!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/f7/89/4e/f7894ecdca1c40aab79e9cccaa261288.jpg" alt="Mercedes-Benz S-Class">
+        <h3>Mercedes-Benz S-Class</h3>
+        <p>Elegant and high-performance luxury sedan.</p>
+        <p><strong>Price: R2,500,000</strong></p>
+        <button onclick="alert('You have shown interest in the Mercedes-Benz S-Class!')">Contact Seller</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/6f/07/ad/6f07ad9b0feb72977b8d8bcd02317f0d.jpg" alt="Bentley Continental GT">
+        <h3>Bentley Continental GT</h3>
+        <p>Luxury sports coupe with unrivaled comfort and speed.</p>
+        <p><strong>Price: R5,500,000</strong></p>
+        <button onclick="alert('You have shown interest in the Bentley Continental GT!')">Contact Seller</button>
       </div>
     </section>
 
